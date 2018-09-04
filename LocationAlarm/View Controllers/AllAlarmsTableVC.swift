@@ -15,7 +15,7 @@ class AllAlarmsTableVC: UIViewController {
     
     var dataController: DataController!
     var locationManager: LocationManager!
-    var frc: NSFetchedResultsController<Alarm>!
+    var frc: NSFetchedResultsController<Alarm>?
     var selectedAlarm: Alarm!
     let alarmSettingsSegueId = "showAlarm"
     let infoSegueId = "showInfo"
@@ -42,6 +42,7 @@ class AllAlarmsTableVC: UIViewController {
         super.viewWillAppear(animated)
         
         setupFetchedResultsController()
+        reloadTable()
         selectedAlarm = nil
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: false)
@@ -52,7 +53,7 @@ class AllAlarmsTableVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        reloadTable()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,10 +79,11 @@ extension AllAlarmsTableVC {
     // MARK: - Editing
     
     func deleteAlarm(at indexPath: IndexPath) {
-        let alarm = frc.object(at: indexPath)
-        locationManager.stopMonitoringAlarm(alarm: alarm)
-        dataController.viewContext.delete(alarm)
-        try? dataController.viewContext.save()
+        if let alarm = frc?.object(at: indexPath) {
+            locationManager.stopMonitoringAlarm(alarm: alarm)
+            dataController.viewContext.delete(alarm)
+            try? dataController.viewContext.save()
+        }
     }
     
     // MARK: - Helpers
@@ -92,9 +94,9 @@ extension AllAlarmsTableVC {
         let sort = NSSortDescriptor(key: sortKey, ascending: true)
         request.sortDescriptors = [sort]
         frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: cacheName)
-        frc.delegate = self
+        frc?.delegate = self
         do {
-            try frc.performFetch()
+            try frc?.performFetch()
         }
         catch {
             fatalError("Error fetching data: " + error.localizedDescription)
@@ -107,7 +109,7 @@ extension AllAlarmsTableVC {
     }
     
     func hideTableIfEmpty() {
-        if frc.sections?[0].numberOfObjects == 0 {
+        if frc?.sections?[0].numberOfObjects == 0 {
             noAlarms.isHidden = false
             tableView.isHidden = true
         }
@@ -135,34 +137,32 @@ extension AllAlarmsTableVC {
 extension AllAlarmsTableVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if frc.sections != nil {
-            return frc.sections!.count
+        if let sections = frc?.sections?.count {
+            return sections
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let rows = frc.sections?[section].numberOfObjects {
+        if let rows = frc?.sections?[section].numberOfObjects {
             return rows
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let alarm = frc.object(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.defaultReuseIdentifier, for: indexPath) as! TableCell
-        
-        // Configure cell
-        cell.alarmName.text = alarm.name
-        cell.alarmDetails.text = alarm.details
-        cell.alarmSwitch.isOn = alarm.isEnabled
-        cell.alarm = alarm
-        
+        if let alarm = frc?.object(at: indexPath) {
+            cell.alarmName.text = alarm.name
+            cell.alarmDetails.text = alarm.details
+            cell.alarmSwitch.isOn = alarm.isEnabled
+            cell.alarm = alarm
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedAlarm = frc.object(at: indexPath)
+        selectedAlarm = frc?.object(at: indexPath)
         performSegue(withIdentifier: alarmSettingsSegueId, sender: self)
     }
     
