@@ -71,7 +71,6 @@ class AllAlarmsTableVC: UIViewController {
 
 }
 
-
 // MARK: - Customized
 
 extension AllAlarmsTableVC {
