@@ -32,23 +32,27 @@ class AllAlarmsTableVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
-        //tableView.delegate = self
-        //tableView.dataSource = self
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        dataController = appDelegate.dataController
+        locationManager = appDelegate.locationManager
+        addInfoButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setupFetchedResultsController()
-        tableView.reloadData()
-        hideTableIfEmpty()
-        addInfoButton()
         selectedAlarm = nil
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: false)
             tableView.reloadRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        reloadTable()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -85,7 +89,6 @@ extension AllAlarmsTableVC {
     
     func setupFetchedResultsController() {
         let sortKey = "id"
-        dataController = (UIApplication.shared.delegate as! AppDelegate).dataController
         let request: NSFetchRequest<Alarm> = Alarm.fetchRequest()
         let sort = NSSortDescriptor(key: sortKey, ascending: true)
         request.sortDescriptors = [sort]
@@ -97,6 +100,11 @@ extension AllAlarmsTableVC {
         catch {
             fatalError("Error fetching data: " + error.localizedDescription)
         }
+    }
+    
+    func reloadTable() {
+        tableView.reloadData()
+        hideTableIfEmpty()
     }
     
     func hideTableIfEmpty() {
@@ -135,7 +143,10 @@ extension AllAlarmsTableVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (frc.sections?[section].numberOfObjects)!
+        if let rows = frc.sections?[section].numberOfObjects {
+            return rows
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
