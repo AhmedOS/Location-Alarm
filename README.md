@@ -16,5 +16,5 @@ So you won't forget about the grocery when you are around the store, and won't m
 * Alarm will ring for only 60 seconds and it will stop automatically.
 * Alarm will ring even if the app is not active or closed.
 * If an alarm will ring when the app is closed, a notification will be send indicating that alarm is ringing, and you can stop it from that notification by swiping down and click on "Stop".
-* If you dissmissed the notification without stoping the alarm, the alarm will continue ringing for 60 seconds, or until you open the app and stop it from there.
+* If you dismissed the notification without stoping the alarm, the alarm will continue ringing for 60 seconds, or until you open the app and stop it from there.
 * By enabling "Repeat" option in alarm settings, the alarm will ring everytime you enter the location region, otherwise, it will ring only once and it will be disabled after that.
