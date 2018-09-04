@@ -25,8 +25,6 @@
 		7690FC282120AF250000090B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7690FC262120AF250000090B /* Main.storyboard */; };
 		7690FC2A2120AF370000090B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7690FC292120AF370000090B /* Assets.xcassets */; };
 		7690FC2D2120AF370000090B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7690FC2B2120AF370000090B /* LaunchScreen.storyboard */; };
-		7690FC382120AF370000090B /* WakeUpAtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7690FC372120AF370000090B /* WakeUpAtTests.swift */; };
-		7690FC432120AF370000090B /* WakeUpAtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7690FC422120AF370000090B /* WakeUpAtUITests.swift */; };
 		76A06CB3212D8846004FA391 /* AlarmRingingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A06CB2212D8846004FA391 /* AlarmRingingVC.swift */; };
 		76A0EFA42123B16F00164122 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A0EFA32123B16F00164122 /* MapVC.swift */; };
 		76A0EFA72124C27C00164122 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A0EFA62124C27C00164122 /* LocationManager.swift */; };
@@ -71,11 +69,7 @@
 		7690FC2C2120AF370000090B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7690FC2E2120AF370000090B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7690FC332120AF370000090B /* LocationAlarmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationAlarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7690FC372120AF370000090B /* WakeUpAtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpAtTests.swift; sourceTree = "<group>"; };
-		7690FC392120AF370000090B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7690FC3E2120AF370000090B /* LocationAlarmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationAlarmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7690FC422120AF370000090B /* WakeUpAtUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpAtUITests.swift; sourceTree = "<group>"; };
-		7690FC442120AF370000090B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76A06CB2212D8846004FA391 /* AlarmRingingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRingingVC.swift; sourceTree = "<group>"; };
 		76A0EFA32123B16F00164122 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		76A0EFA62124C27C00164122 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -152,8 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				7690FC212120AF250000090B /* LocationAlarm */,
-				7690FC362120AF370000090B /* LocationAlarmTests */,
-				7690FC412120AF370000090B /* LocationAlarmUITests */,
 				7690FC202120AF250000090B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -181,24 +173,6 @@
 				76661FB321212A8200D0EE75 /* Views */,
 			);
 			path = LocationAlarm;
-			sourceTree = "<group>";
-		};
-		7690FC362120AF370000090B /* LocationAlarmTests */ = {
-			isa = PBXGroup;
-			children = (
-				7690FC372120AF370000090B /* WakeUpAtTests.swift */,
-				7690FC392120AF370000090B /* Info.plist */,
-			);
-			path = LocationAlarmTests;
-			sourceTree = "<group>";
-		};
-		7690FC412120AF370000090B /* LocationAlarmUITests */ = {
-			isa = PBXGroup;
-			children = (
-				7690FC422120AF370000090B /* WakeUpAtUITests.swift */,
-				7690FC442120AF370000090B /* Info.plist */,
-			);
-			path = LocationAlarmUITests;
 			sourceTree = "<group>";
 		};
 		76A0EFA52124C23E00164122 /* Utilities */ = {
@@ -374,7 +348,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7690FC382120AF370000090B /* WakeUpAtTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +355,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7690FC432120AF370000090B /* WakeUpAtUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
