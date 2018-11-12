@@ -17,7 +17,7 @@ class BlurryToast: UIView {
     
     fileprivate func getBlurrySubView() -> UIView {
         var subView: UIView!
-        if UIAccessibilityIsReduceTransparencyEnabled() == false {
+        if UIAccessibility.isReduceTransparencyEnabled == false {
             //view.backgroundColor = .clear
             let blurEffect = UIBlurEffect(style: .extraLight)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
