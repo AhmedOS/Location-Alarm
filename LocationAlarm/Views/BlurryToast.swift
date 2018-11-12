@@ -44,7 +44,7 @@ class BlurryToast: UIView {
         return label
     }
     
-    func showThenHide(completion: @escaping () -> ()) {
+    func showThenHide(completion: (() -> Void)?) {
         
         let blurView = getBlurrySubView()
         let label = getToastLabel()
@@ -57,7 +57,7 @@ class BlurryToast: UIView {
             blurView.fade(to: 0.0, with: self.fadeOutDuration)
             DispatchQueue.main.asyncAfter(deadline: .now() + self.fadeOutDuration + 0.2) {
                 self.removeFromSuperview()
-                completion()
+                completion?()
             }
         }
         
